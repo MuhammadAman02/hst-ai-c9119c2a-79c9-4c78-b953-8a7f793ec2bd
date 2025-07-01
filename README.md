@@ -1,139 +1,175 @@
-# HST AI Python Engineer Project Base (2025 Edition)
+# 🚇 Subway Surfers Game
 
-A modern, production-ready foundation for building Python web applications with best practices for 2025. This project base is designed to work seamlessly with the HST AI Python Engineer prompt.
+A web-based endless runner game inspired by Subway Surfers, built with Python, NiceGUI, and FastAPI.
 
-## Features
+## ✨ Features
 
-- **Framework Flexibility**: Support for multiple UI frameworks (NiceGUI, FastAPI+Jinja2, ReactPy)
-- **UI-First Development**: Prioritizes creating responsive, modern UIs before complex backend features
-- **SQLAlchemy V2 Ready**: Updated database patterns using SQLAlchemy 2.0
-- **Pydantic V2 Compatible**: Uses the latest Pydantic patterns for data validation
-- **Docker Support**: Production-ready containerization with a multi-stage Dockerfile
-- **Fly.io Optimized**: Includes a `fly.toml` for easy deployment with auto-scaling
-- **Version Compatibility**: Carefully selected dependency versions to ensure stability
-- **Environment Configuration**: Uses `.env` files with pydantic-settings for type-safe configuration
+- **Endless Runner Gameplay**: Run automatically with smooth character movement
+- **Intuitive Controls**: Use arrow keys to move left/right, jump, and slide
+- **Obstacle Avoidance**: Dodge trains and barriers to keep running
+- **Coin Collection**: Collect coins to increase your score
+- **Score System**: Track your score, coins, and distance traveled
+- **Leaderboard**: Compete with other players for high scores
+- **Responsive Design**: Beautiful UI that works on different screen sizes
+- **Real-time Statistics**: View game stats and performance metrics
 
-## Project Structure
+## 🎮 How to Play
 
-```
-project_base/
-├── app/
-│   ├── __init__.py
-│   ├── api/            # API endpoints (e.g., FastAPI routers)
-│   │   └── __init__.py
-│   ├── core/           # Core configuration, settings, error handling, logging
-│   │   └── __init__.py
-│   ├── frontend/       # UI implementations (e.g., NiceGUI pages, ReactPy components, FastAPI routes)
-│   │   ├── __init__.py
-│   │   # ├── nicegui_app.py  # Example: NiceGUI implementation
-│   │   # ├── reactpy_app.py  # Example: ReactPy implementation
-│   │   # └── routes.py       # Example: FastAPI frontend routes
-│   ├── generated/      # AI-generated application code
-│   │   └── __init__.py
-│   ├── models/         # Data models & schemas (e.g., Pydantic, SQLAlchemy)
-│   │   └── __init__.py
-│   ├── services/       # Business logic & external API integrations
-│   │   └── __init__.py
-│   ├── static/         # Static assets (CSS, JS, images). ALL image files MUST be placed here or in subdirectories within static/. Do NOT create separate top-level image directories like 'pictures/'.
-│   ├── templates/      # HTML templates (Jinja2)
-│   └── main.py         # Defines FastAPI routes and application logic for the 'app' module
-├── .dockerignore         # Specifies intentionally untracked files for Docker
-├── .env                  # Environment variables (create this file based on .env.example if provided)
-├── Dockerfile            # Container configuration
-├── fly.toml              # fly.io deployment configuration
-├── main.py               # Application entry point (runs the Uvicorn server)
-├── README.md             # This file
-└── requirements.txt      # Python dependencies
-```
+1. **Movement**: Use ← → arrow keys to move between lanes
+2. **Jump**: Press ↑ arrow key or spacebar to jump over obstacles
+3. **Slide**: Press ↓ arrow key to slide under barriers
+4. **Collect Coins**: Run through gold coins to increase your score
+5. **Avoid Obstacles**: Don't hit the red barriers or you'll crash!
 
-## Getting Started
+## 🚀 Quick Start
 
 ### Prerequisites
 
-- Python 3.8+
-- Docker (optional, for containerized deployment)
-- Fly.io account and `flyctl` CLI (optional, for Fly.io deployment)
+- Python 3.9 or higher
+- pip package manager
 
 ### Installation
 
-1.  **Clone the repository (if applicable)**
-2.  **Create and activate a virtual environment:**
-    ```bash
-    python -m venv venv
-    # On Windows
-    # venv\Scripts\activate
-    # On macOS/Linux
-    # source venv/bin/activate
-    ```
-3.  **Install dependencies:**
-    ```bash
-    pip install -r requirements.txt
-    ```
-4.  **Create a `.env` file** in the `project_base` directory (you can copy `.env.example` if one exists and modify it). At a minimum, it might look like this if you want to change the default port:
-    ```env
-    PORT=8000
-    HOST=0.0.0.0
-    ```
-    If no `.env` file is present, the application will use default values (e.g., port 8000).
+1. **Clone or download the project**
+2. **Install dependencies**:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-### Running the Application Locally
+3. **Create data directory**:
+   ```bash
+   mkdir -p data logs
+   ```
 
-Execute the main application script:
+4. **Set up environment variables** (optional):
+   ```bash
+   cp .env.example .env
+   # Edit .env file with your preferred settings
+   ```
 
-```bash
-python main.py
+5. **Run the game**:
+   ```bash
+   python main.py
+   ```
+
+6. **Open your browser** and go to: `http://localhost:8080`
+
+## 🎯 Game Controls
+
+| Key | Action |
+|-----|--------|
+| ← → | Move left/right between lanes |
+| ↑ or Space | Jump over obstacles |
+| ↓ | Slide under barriers |
+
+## 📊 Features Overview
+
+### Game Mechanics
+- **Automatic Running**: Character runs forward automatically
+- **Lane System**: Three lanes to move between
+- **Physics**: Realistic jumping and sliding mechanics
+- **Progressive Difficulty**: Game speed increases over time
+- **Collision Detection**: Accurate hit detection for obstacles and coins
+
+### Scoring System
+- **Distance Points**: Earn points for distance traveled
+- **Coin Bonuses**: Extra points for collecting coins
+- **High Score Tracking**: Automatic leaderboard updates
+- **Statistics**: Track total games, coins, and distance
+
+### Technical Features
+- **Real-time Rendering**: Smooth 60fps gameplay using HTML5 Canvas
+- **Database Integration**: SQLite database for persistent scores
+- **RESTful API**: FastAPI backend for game data management
+- **Responsive UI**: Modern web interface with NiceGUI
+- **Error Handling**: Robust error handling and logging
+
+## 🏗️ Project Structure
+
+```
+subway-surfers-game/
+├── main.py                 # Application entry point
+├── app/
+│   ├── main.py            # NiceGUI page definitions
+│   ├── core/              # Core application components
+│   ├── models/            # Database models
+│   ├── schemas/           # Pydantic schemas
+│   ├── services/          # Business logic
+│   ├── api/               # FastAPI endpoints
+│   └── frontend/          # UI components
+├── data/                  # Database files
+├── logs/                  # Application logs
+├── requirements.txt       # Python dependencies
+└── README.md             # This file
 ```
 
-The application will typically be available at `http://0.0.0.0:8000` (or the port specified in your `.env` file).
+## 🔧 Configuration
 
-## API Endpoints
+The game can be configured through environment variables:
 
--   `GET /`: Returns a welcome message.
--   `GET /health`: Returns a health status, useful for monitoring.
+- `HOST`: Server host (default: 0.0.0.0)
+- `PORT`: Server port (default: 8080)
+- `DEBUG`: Enable debug mode (default: false)
+- `DATABASE_URL`: Database connection string
+- `GAME_SPEED`: Initial game speed
+- `SECRET_KEY`: Security key for sessions
 
-## Deployment
+## 📈 API Endpoints
 
-### Docker Deployment
+- `GET /api/health` - Health check
+- `POST /api/game/session` - Save game session
+- `GET /api/game/high-scores` - Get leaderboard
+- `GET /api/game/stats` - Get game statistics
 
-1.  **Build the Docker image:**
-    ```bash
-    docker build -t my-fastapi-app .
-    ```
-2.  **Run the Docker container:**
-    ```bash
-    docker run -p 8000:8000 -d my-fastapi-app
-    ```
-    Replace `8000:8000` with `<host_port>:<container_port>` if you need to map to a different host port. The container port is determined by the `PORT` environment variable set in the `Dockerfile` or `fly.toml` (defaulting to 8000).
+## 🎨 Customization
 
-### Fly.io Deployment
+### Game Settings
+Modify game parameters in `app/core/config.py`:
+- Spawn rates for obstacles and coins
+- Game speed progression
+- Player physics settings
 
-1.  **Install `flyctl`**: Follow the instructions at [fly.io/docs/hands-on/install-flyctl/](https://fly.io/docs/hands-on/install-flyctl/).
-2.  **Login to Fly.io**: `fly auth login`
-3.  **Launch the app (first time only)**:
-    ```bash
-    fly launch --name your-unique-app-name --region sin
-    ```
-    (Replace `your-unique-app-name` and `sin` (Singapore) with your desired app name and region. This will also create a `fly.toml` if one doesn't exist, or update the existing one.)
-4.  **Deploy changes**:
-    ```bash
-    fly deploy
-    ```
+### Visual Styling
+Update CSS styles in `app/frontend/game_ui.py`:
+- Color schemes
+- UI layouts
+- Animation effects
 
-The `fly.toml` file is pre-configured for auto-scaling and to stop machines when idle to save costs.
+### Game Mechanics
+Extend game logic in the JavaScript section:
+- Add new obstacle types
+- Implement power-ups
+- Create special effects
 
-## Customization
+## 🐛 Troubleshooting
 
--   **Add new API endpoints**: Modify `project_base/app/main.py` to include new routes and logic.
--   **Modify dependencies**: Update `project_base/requirements.txt` and reinstall.
--   **Adjust Docker configuration**: Edit `project_base/Dockerfile`.
--   **Change deployment settings**: Update `project_base/fly.toml` for Fly.io.
+### Common Issues
 
-## Core Principles for Development
+1. **Game won't start**: Check browser console for JavaScript errors
+2. **Database errors**: Ensure `data/` directory exists and is writable
+3. **Port conflicts**: Change the PORT in `.env` file
+4. **Performance issues**: Close other browser tabs and applications
 
-While this base is minimal, consider these principles as you expand your application:
+### Debug Mode
 
--   **Modularity**: Keep code organized into logical modules.
--   **Clarity**: Write clear, understandable code with type hints where appropriate.
--   **Testing**: Implement unit and integration tests for new features.
--   **Security**: Follow security best practices (input validation, authentication if needed, etc.).
--   **Documentation**: Keep this README and code comments up-to-date.
+Enable debug mode by setting `DEBUG=true` in your `.env` file for detailed logging.
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
+
+## 📝 License
+
+This project is open source and available under the MIT License.
+
+## 🎉 Enjoy Playing!
+
+Have fun playing Subway Surfers and try to beat the high score! 🏆
+
+---
+
+*Built with ❤️ using Python, NiceGUI, and FastAPI*
